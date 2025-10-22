@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <title>شهــــــادات تقدير</title>
+  <style>
+    body {
+      background-color: #0b0f2f;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      direction: rtl;
+
+      height: 2000px;
+    }
+  
+
+    .back-button:hover {
+      background-color: white;
+      color: #0b0f2f;
+    }
+
+    .poster-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* صفين، كل صف فيه صورتين */
+      gap: 25px;
+      justify-items: center;
+      position: relative;
+      width: 500px;
+      max-width: 1200px;
+      height: 300px;
+      margin: 60px auto 0 auto; /* عشان يبقى تحت الزر */
+    }
+
+    .poster-gallery img {
+      width: 100px;
+      border-radius: 15px;
+      object-fit: cover;
+      border-radius: 13px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+      transition: transform 0.3s ease;
+      position: absolute;
+    }
+
+    .poster-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+
+
+
+
+
+    .poster-gallery img:nth-child(1) {
+      top: 30px;
+      left: 0;
+      height: 100;
+      width: 100%;
+      margin-top: 250px;
+      margin-left: 5px;
+    } /* الصوره تحت على الشمال */
+
+
+.poster-gallery img:nth-child(2) {
+      top: -330px;
+      left: -280px;
+      height: 100%;
+      width: 100%;
+      margin-top: 292px;
+      margin-left: 285px;
+    } /* الصوره تحت على اليمين */
+
+
+.poster-gallery img:nth-child(3) {
+      top: 355px;
+      left: -280px;
+      height: 100%;
+      width: 100%;
+      margin-top: 292px;
+      margin-left: 285px;
+    } /* الصوره تحت على اليمين */
+
+
+.poster-gallery img:nth-child(4) {
+      top: 670Px;
+      left: -280px;
+      height: 100%;
+      width: 100%;
+      margin-top: 292px;
+      margin-left: 285px;
+    } /* الصوره تحت على اليمين */
+
+
+.poster-gallery img:nth-child(5) {
+      top: 990Px;
+      left: -280px;
+      height: 100%;
+      width: 100%;
+      margin-top: 292px;
+      margin-left: 285px;
+    } /* الصوره تحت على اليمين */
+
+
+
+.poster-gallery img:nth-child(6) {
+      top: 1310Px;
+      left: -280px;
+      height: 100%;
+      width: 100%;
+      margin-top: 292px;
+      margin-left: 285px;
+    } /* الصوره تحت على اليمين */
+
+
+
+
+
+
+
+
+     </style>
+</head><meta http-equiv="refresh" content="5">
+<body>
+  <h1>بوسترات المدرسين</h1>
+  <div class="poster-gallery">
+    <img src="شهايد (1).JPG" alt="بوستر 1" />
+    <img src="شهايد (2).JPG" alt="بوستر 2" >
+    <img src="شهايد (3).JPG" alt="بوستر 3" >
+    <img src="شهايد (4).JPG" alt="بوستر 4" >
+    <img src="شهايد (5).JPG" alt="بوستر 5" >
+    <img src="شهايد (6).JPG" alt="بوستر 6" >
+
+
+<!-- زر العودة إلى قسم الرئيسية -->
+<button class="back-btn" onclick="goHomeSection()">الــعودة</button>
+
+<script>
+  function goHomeSection() {
+    // بيرجع المستخدم لقسم الرئيسية في صفحة turkey.html
+    window.location.href = "turkey.html#home";
+  }
+</script>
+
+<style>
+  .back-btn {
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 45px !important;
+
+
+   
+
+
+    
+    background-color: transparent;
+    border: 2px solid cyan;
+    color: cyan;
+    padding: 10px 25px;
+    font-size: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 9999;        /* عشان يكون فوق الصور */
+  }
+
+  .back-btn:hover {
+    background-color: cyan;
+    color: black;
+    box-shadow: 0 0 20px cyan;
+    transform: scale(1.05);
+  }
+</style>
+
+</html>
+
+
+  </div>

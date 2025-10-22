@@ -1,0 +1,26 @@
+.welcome-title {
+      font-size: 38px;
+      margin-bottom: -20px;
+      text-align: center;
+      color: white;
+    } 
+ margin-bottom: -20px
+(للتحكم في المسافه بين كلمتين)
+
+.welcome-title {
+      font-size: 38px;
+      margin-bottom: -20px;
+      text-align: center;
+      color: white;
+    }
+  font-size: 38px
+(للتحكم في حجم النص h1)
+
+ .sub-title {
+      font-size: 30px;
+      margin-bottom: 20px;
+      text-align: center;
+      color: cyan;
+    }
+  font-size: 30px
+(للتحكم ف حجم النص h2)

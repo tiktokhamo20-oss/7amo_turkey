@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>حمو التركي - 7amo turkey</title>
+  <style>
+    
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+    body {
+      background-color: #000;
+      color: #fff;
+      min-height: 100vh;
+      padding: 0;
+      margin: 0;
+    }
+    .navbar {
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px; /* قللت المسافة بين الأزرار */
+  background-color: #0d0d0d;
+  padding: 15px 30px;
+  border-radius: 8px;
+  flex-wrap: nowrap; /* عشان الأزرار تكون في صف واحد */
+  align-items: center; /* لتمركز الأزرار رأسياً */
+}
+    
+    .navbar button {
+      background-color: transparent;
+      border: 2px solid cyan;
+      color: cyan;
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+    }
+    .navbar button.active {
+      background-color: cyan;
+      color: black;
+      box-shadow: 0 0 20px cyan;
+    }
+    .navbar button:hover {
+      background-color: cyan;
+      color: black;
+      box-shadow: 0 0 15px cyan;
+      transform: scale(1.05);
+    }
+    section {
+      display: none;
+      padding: 30px 10px;
+      max-width: 900px;
+      margin: 20px auto 0 auto;
+      text-align: center;
+    }
+    section.active {
+      display: block;
+    }
+    #home img.profile-pic {
+      max-width: 320px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .welcome-container {
+      margin-top: 10px;
+    }
+
+    .welcome-title {
+  font-family: 'Cairo', sans-serif; /* هنا حط اسم الخط اللي اخترته من Google Fonts */
+  font-size: 45px;
+  margin-bottom: -20px;
+  text-align: center;
+  color: white;
+}
+
+    .sub-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+      color: cyan;
+    }
+
+     #home h2 {
+      font-size: 30px;
+      color: cyan;
+      max-width: 600px;
+      margin: -35px auto 20px auto;
+      line-height: 1.5;
+    }
+ #home h1 {
+  
+      font-size: 80px;
+      color: #ffffff;
+      max-width: 600px;
+      margin: -170px auto 20px auto;
+      line-height: 1.5;
+    }
+    #home p {
+      font-size: 18px;
+      color: #aaa;
+      max-width: 600px;
+      margin: 0 auto 40px auto;
+      line-height: 1.5;
+    }
+
+    .slider-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto 40px auto;
+    }
+    .static-images {
+      text-align: center;
+      overflow-x: auto;
+      cursor: grab;
+      white-space: nowrap;
+      border-radius: 12px;
+      padding: 10px 40px;
+      user-select: none;
+      scroll-behavior: smooth;
+    }
+    .static-images.active {
+      cursor: grabbing;
+    }
+    .static-images img {
+      max-width: 320px;
+      border-radius: 12px;
+      margin: 0 10px 10px 10px;
+      object-fit: contain;
+      display: inline-block;
+      vertical-align: middle;
+      pointer-events: auto;
+      user-select: none;
+      transition: box-shadow 0.3s ease;
+    }
+    .static-images img:hover {
+      box-shadow: 0 0 10px cyan;
+    }
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: rgba(0, 255, 255, 0.7);
+      border-radius: 50%;
+      color: black;
+      font-weight: bold;
+      font-size: 28px;
+      line-height: 40px;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+      z-index: 10;
+      box-shadow: 0 0 10px cyan;
+    }
+    .arrow:hover {
+      background-color: cyan;
+      box-shadow: 0 0 25px cyan, 0 0 40px #00ffff;
+      transform: scale(1.1);
+    }
+    .arrow-left { left: 5px; }
+    .arrow-right { right: 5px; }
+
+    #works h2 {
+      font-size: 70px;
+      color: cyan;
+      margin-bottom: 30px;
+      margin-left: -150px;
+    }
+    .images-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+    .images-grid img {
+      width: 160px;
+      height: 110px;
+      border-radius: 10px;
+      object-fit: cover;
+      cursor: pointer;
+      box-shadow: 0 0 8px cyan;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .images-grid img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px cyan;
+    }
+    #works .back-btn {
+      margin-top: 40px;
+      background-color: transparent;
+      border: 2px solid cyan;
+      color: cyan;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    #works .back-btn:hover {
+      background-color: cyan;
+      color: black;
+    }
+    #about h2, #contact h2 {
+      font-size: 32px;
+      color: cyan;
+      margin-bottom: 20px;
+    }
+    #about p, #contact p {
+      font-size: 20px;
+      color: #ddd;
+      max-width: 600px;
+      margin: 0 auto 40px auto;
+      line-height: 1.6;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-size: 32px;
+      color: cyan;
+      margin-bottom: 20px;
+    }
+    .social-links a {
+      width: 50px;
+      height: 50px;
+      border: 2px solid cyan;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+      background-color: transparent;
+    }
+    .social-links a:hover {
+      background-color: cyan;
+      box-shadow: 0 0 15px cyan;
+      transform: scale(1.15);
+    }
+    .social-links img {
+      width: 28px;
+      height: 28px;
+    }
+    #contact table {
+      margin: 0 auto;
+      border: 2px solid cyan;
+      border-radius: 10px;
+      box-shadow: 0 0 15px cyan;
+      overflow: hidden;
+      width: 80%;
+    }
+    #contact th, #contact td {
+      padding: 15px;
+      border-bottom: 1px solid #001b1b;
+    }
+    #contact th {
+      background-color: rgb(0, 29, 29);
+      color: cyan;
+      font-size: 20px;
+    }
+    #contact td {
+      color: #fff;
+      background-color: #111;
+      font-size: 18px;
+    }
+    @media (max-width: 768px) {
+      .navbar { justify-content: center; flex-wrap: wrap; }
+      .images-grid img { width: 45vw; height: auto; }
+      #home img.profile-pic { max-width: 90vw; }
+      .static-images img { max-width: 90vw; }
+      #contact table { width: 100%; }
+    }
+  </style>
+  <style>
+  .image-buttons {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.image-buttons button {
+  background-color: transparent;
+  border: 2px solid cyan;
+  color: cyan;
+  padding: 8px 16px;
+  margin: 0 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.image-buttons button:hover {
+  background-color: cyan;
+  color: black;
+}
+  .folder {
+  border: 2px solid cyan;
+  padding: 10px;
+  border-radius: 12px;
+  transition: box-shadow 0.3s;
+  text-align: center;
+  background-color: #111;
+  display: inline-block; /* عشان العنصر يتوسع حسب المحتوى */
+}
+
+.folder:hover {
+  box-shadow: 0 0 25px cyan;
+}
+
+.folder img {
+  width: 210px;       /* حجم طبيعي للصورة */
+  height: 210px;      /* الحجم الطبيعي للصورة */
+  max-width: 210px;  /* لو عاوز تحد أقصى عرض للصورة */
+  border-radius: 10px;
+  box-shadow: 0 0 8px cyan;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: block;
+  margin: 0 auto; /* توسيط الصورة داخل المجلد */
+}
+
+.folder img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px cyan;
+}
+
+.folder h3 {
+  font-size: 18px;
+  color: cyan;
+  margin-top: 10px;
+}</style>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <button onclick="showSection('home', this)" class="active">الرئيسية</button>
+      <button onclick="showSection('works', this)">أعمالنا</button>
+      <button onclick="showSection('about', this)">نبذة عني</button>
+      <button onclick="showSection('contact', this)">اتصل بنا</button>
+    </nav>
+  </header>
+
+  <section id="home" class="active">
+    <img src="Untitled-1.png" alt="صورة أحمد حمدي" class="profile-pic" />
+
+    <div class="welcome-container">
+      <h1 class="welcome-title">التركـــــي</h1> 
+      
+      <h2 class="sub-title"> يرحـــب بــــــك..</h2>
+    </div>
+
+    <p>أسعى لــــــتقديم تصاميم تعبر عن شخصية كل عميل..</p>
+
+    <div class="slider-container">
+      <div class="arrow arrow-left" role="button" tabindex="0">&#8592;</div>
+      <div class="static-images" tabindex="0">
+        <img src="تركي (2).JPG" width="400px" />
+ <img src="حمو (5).JPEG" width="380px"/>
+        <img src="تركي (8).JPG" width="375px"/>
+        <img src="تركي (7).JPG" width="375"/>
+        <img src="حمو (8).JPEG" width="375"/>
+        <img src="حمو (1).JPEG" width="375"/>
+      </div>
+      <div class="arrow arrow-right" role="button" tabindex="0">&#8594;</div>
+    </div>
+  </section>
+<section id="works">
+  <h2>
+    
+    <div style="text-align: center; display: inline-block; position: relative; margin-bottom: 50px;
+    margin-top: -50px; margin-bottom: px;">
+  <h2 style="
+    font-size: 40px;
+    font-weight: bold;
+    color: cyan;
+    text-shadow:
+      0 0 5px #000000,
+      0 0 10px rgb(0, 0, 0),
+      0 0 15px #000000,
+      0 0 20px rgb(0, 0, 0);
+    -webkit-text-stroke: 1px #00ffff;
+    position: relative;
+    display: inline-block;
+    padding:10px 30px; /* المسافة بين الكلمة وحدود المربع */
+    border-radius: 12px;
+    margin-top: 30px;
+    margin-left: 90px;
+    
+    box-shadow: 0 0 15px cyan, 0 0 25px #034b4b, 0 0 35px rgb(1, 10, 10);
+    transition: transform 0.3s, box-shadow 0.3s;
+  ">
+    أعمـــــــالنا
+  </h2>
+</div>
+
+<style>
+div h2:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px cyan, 0 0 45px #00ffff, 0 0 60px cyan;
+}
+</style>
+    </h2> 
+
+
+  <div style="text-align: center; ">
+    <a href="teachers-posters.html">
+      <img 
+        src="حمو (3).JPEG" 
+        alt="بسترات المدرسين" 
+        class="zoom-folder"
+        style="width: 300px; cursor: pointer; border-radius: 20px; margin-top: -60px; margin-left: 320px;" 
+      />
+    </a>
+    <div style="color: cyan; font-size: 30px; margin-top: 10px; font-weight: bold; margin-left: 320px; margin-top: -10px;">
+      بوسترات المدرسين
+    </div>
+
+
+
+    <div style="text-align: center;">
+    <a href="شهادات .html">
+      <img 
+        src="شهايد (2).JPG"  
+        alt="شهادات تقدير" 
+        class="zoom-folder"
+        style="width: 280px; cursor: pointer; border-radius: 20px; margin-left: -310px; margin-top:-450px; margin-bottom: 100px;" 
+      />
+    </a>
+    <div style="color: cyan; font-size: 30px; margin-top: 10px; font-weight: bold; margin-top: -107px; margin-left: -300px;">
+       شهــــــادات تقدير
+    </div>
+  </div>
+</section>
+
+<!-- 🎨 كود تأثير الزوم -->
+<style>
+  .zoom-folder {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .zoom-folder:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px cyan, 0 0 50px #00ffff;
+  }
+</style>
+
+  <!-- قسم عرض الصور داخل المجلد -->
+  <div id="folder-content">
+    
+    <div id="teachers" class="folder-images" style="display:none;">
+  <div class="image-buttons">
+    <button onclick="showImage('t1')">صورة 1</button>
+    <button onclick="showImage('t2')">صورة 2</button>
+    <button onclick="showImage('t3')">صورة 3</button>
+  </div>
+
+  <img id="t1" src="HHH.jpg" style="display:block;" />
+  <img id="t2" src="بوستر حجز م.احمد حمدي.png" style="display:none;" />
+  <img id="t3" src="image4.jpg" style="display:none;" />
+</div>
+    
+    <div id="social" class="folder-images" style="display:none;">
+      <img src="صورة واتساب بتاريخ 2025-05-24 في 01.36.27_a9373ddf.jpg" alt="صورة 1" />
+      <img src="image4.jpg" alt="صورة 2" />
+      <img src="بوستر مراجعه م.السيد حسن.jpg" alt="صورة 3" />
+    </div>
+  </div>
+</section>
+</section>
+  <section id="about">
+    <h2>نبذة عني</h2>
+    <p>أنا محمد، جرافيك ديزاينر
+  اصمم بوسترات بأفكار مختلفة وجذابة!
+
+  
+  هدفي في تصميم البوســـترات ان التصميم يتكلم عنك قبل محد يسأل؟   .</p>
+    <div class="social-links">
+      <a href="https://facebook.com/hamo.el.turkey.948029" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" /></a>
+      <a href="https://instagram.com/7amo.turkey" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" /></a>
+      <a href=https://wa.me/201281758858><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" /></a> 
+      <a href=https://t.me/hamo_turkey><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" /></a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>اتصل بنا</h2>
+    <table>
+      <tr><th>رقم الهاتف</th><td>01281758858</td></tr>
+      <tr><th>البريد الإلكتروني</th><td>hamosaeed004@gmail.com</td></tr>
+    </table>
+  </section>
+
+  <script>
+    function showSection(id, btn) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.navbar button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    const slider = document.querySelector('.static-images');
+    let isDown = false, startX, scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+    slider.addEventListener('mouseleave', () => isDown = slider.classList.remove('active'));
+    slider.addEventListener('mouseup', () => isDown = slider.classList.remove('active'));
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2;
+      slider.scrollLeft = scrollLeft - walk;
+    });
+
+    document.querySelector('.arrow-left').addEventListener('click', () => {
+      slider.scrollBy({ left: -320, behavior: 'smooth' });
+    });
+    document.querySelector('.arrow-right').addEventListener('click', () => {
+      slider.scrollBy({ left: 320, behavior: 'smooth' });
+    });
+  </script>
+</body>
+
+</html>
